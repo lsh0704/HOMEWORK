@@ -1,0 +1,69 @@
+<html>
+<title>Snowflake</title>
+<head>
+<meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus¢ç">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+<style>
+ body { background-color : black; }
+ .drop { position: absolute; width: 3; /*filter: flipV(), flipH();*/ font-size: 50; color: blue }
+ </style>
+ <script language="javascript">
+
+ //Rain/Snow effect- By Craig Blanchette Craiga.topcities.com
+ //Script featured on Dynamic Drive
+ //Visit http://www.dynamicdrive.com for this script and more
+
+ //snow = true; // false-rain; true-snow
+ sym = " * " //These are the symbols for each
+ //rainsym = " ' " //You can put images here.
+ howmany = 30 //How many drops/snowflakes?
+
+ /**************Do not need to change anything below***********/
+ //if(snow){sym = snowsym; speed=1; angle=10; drops=howmany}
+ /*sym = snowsym;*/ speed=1; angle=10; /*drops=howmany*/
+ //else{sym = rainsym; speed=10; drops=howmany; angle=6}
+ movex = -speed/angle; movey = speed;
+ //count = 0;
+
+ function movesnow(){
+ for(move = 0; move < howmany; move++){
+ xx[move]+=movex; yy[move]+=mv[move];
+ hmm = Math.floor(Math.random()*1);
+ if(xx[move] < 0){xx[move] = maxx+10;}
+ if(yy[move] > maxy){yy[move] = 10;}
+ drop[move].left = xx[move]
+ drop[move].top = yy[move]+document.body.scrollTop;
+ }setTimeout('movesnow()','1')}
+
+ </script>
+</head>
+<body>
+
+<script language="javascript">
+
+
+ drop = new Array(); xx = new Array(); yy = new Array(); mv = new Array()
+ ly = "document.all[\'"; st = "\'].style"
+ for(make = 0; make < howmany; make++){
+ document.write('<div id="drop'+make+'" class=drop>'+sym+'</div>');
+ drop[make] = eval(ly+'drop'+make+st);
+ maxx = document.body.clientWidth-40
+ maxy = document.body.clientHeight-40
+ xx[make] = Math.random()*maxx;
+ yy[make] = -100-Math.random()*maxy;
+ drop[make].left = xx[make]
+ drop[make].top = yy[make]
+ mv[make] = (Math.random()*5)+speed/4;
+ drop[make].fontSize = (Math.random()*10)+20;
+ //if(snow){col = 'white'}else{col = 'blue'}
+ //drop[make].color = col;
+ }
+ window.onload=movesnow
+
+ </script>
+
+</body>
+ </html>
